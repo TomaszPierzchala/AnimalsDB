@@ -1,3 +1,9 @@
 *bk
 *mwb.bak
 aux/
+*.csv*
+*.xlsx*
+.passwd
+__*/
+
+

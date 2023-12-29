@@ -1,0 +1,1 @@
+In main tables, not NULL columns should be : an_id, an_sex, an_birth_dt, an_loc, an_origin
