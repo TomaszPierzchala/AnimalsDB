@@ -15,9 +15,9 @@ def to_date(df):
 def excel_to_csv(input_excel, output_csv, _sheet_name):
     MICE = ['Balbc', 'C57Bl6']
     MATCHING = ['Balbc_porody', 'C57Bl6_porody']
-    HODOWLA = 1
+    MICE_HEADER = 1
 
-    HEADER = HODOWLA if _sheet_name in MICE else 0
+    HEADER = MICE_HEADER if _sheet_name in MICE else 0
     print(f'HEADER {HEADER}, sheet names: {_sheet_name}')
 
     # Wczytaj plik Excela
