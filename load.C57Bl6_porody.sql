@@ -1,3 +1,6 @@
+SELECT COUNT(*) FROM excel.C57Bl6_porody;
+TRUNCATE TABLE excel.C57Bl6_porody;
+
 LOAD DATA INFILE '/Users/tomek/git/AnimalsDB/C57Bl6_porody.csv'
 INTO TABLE excel.C57Bl6_porody
 FIELDS TERMINATED BY ','  -- Separator pól (przecinek w przypadku CSV)

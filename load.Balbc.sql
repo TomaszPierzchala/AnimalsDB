@@ -1,3 +1,6 @@
+SELECT COUNT(*) FROM excel.Balbc;
+TRUNCATE TABLE excel.Balbc;
+
 LOAD DATA INFILE '/Users/tomek/git/AnimalsDB/Balbc.csv'
 INTO TABLE excel.Balbc
 FIELDS TERMINATED BY ','  -- Separator pól (przecinek w przypadku CSV)
