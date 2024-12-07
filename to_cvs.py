@@ -1,14 +1,13 @@
 import pandas as pd
-import csv
 
 
 def to_date(df):
     DATE_COLUMNS = ['mating date', 'plug date', 'pregnancy', 'parturition', 'weaning']
     for col in DATE_COLUMNS:
-        # Konwertuj kolumnę dat do typu datetime
+        # Convert given columns to datetime
         df[col] = pd.to_datetime(df[col], errors='coerce')
 
-        # Uzyskaj tylko datę (bez godzin i minut)
+        # Keep date only (no time)
         df[col] = df[col].dt.date
 
 
@@ -20,15 +19,12 @@ def excel_to_csv(input_excel, output_csv, _sheet_name):
     HEADER = MICE_HEADER if _sheet_name in MICE else 0
     print(f'HEADER {HEADER}, sheet names: {_sheet_name}')
 
-    # Wczytaj plik Excela
+    # read Excel
     excel_data = pd.read_excel(input_excel, sheet_name=_sheet_name, header=HEADER)
-    # Stwórz pustą ramkę danych, do której dodasz dane z różnych zakładek
+    # Create DataFrame upon the data
     data = excel_data.copy()
-
-    # Usuń dwa pierwsze wiersze
-    #non_empty_rows = non_empty_rows.iloc[1:]
     
-    # Odfiltruj wiersze, które są całkowicie puste
+    # Drop rows with all NaN values
     data = data.dropna(how='all')
                 
     if _sheet_name in MICE:
@@ -43,15 +39,15 @@ def excel_to_csv(input_excel, output_csv, _sheet_name):
         to_date(data)
 
     data.replace('?', '\\N', inplace=True)
-    # Zapisz do jednego pliku CSV
+    # write to csv
     data.to_csv(output_csv, index=False,  na_rep=r'\N')
     print(f'Zapisano dane do pliku {output_csv}.')
 
 if __name__ == "__main__":
-    # Podaj nazwę pliku Excela, do którego chcesz uzyskać dostęp
-    input_excel_file = 'Hodowla.xlsx'
+    # Input Excel file name
+    input_excel_file = 'Breeding.xlsx'
 
-    # Wywołaj funkcję do konwersji
+    # Call conversion function
     excel_to_csv(input_excel_file, 'Balbc.csv', 'Balbc')
     excel_to_csv(input_excel_file, 'C57Bl6.csv', 'C57Bl6')
 
