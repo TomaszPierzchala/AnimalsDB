@@ -6,6 +6,6 @@ aux/
 .passwd
 __*/
 dane.sql
-animal.house.*
+animals.*
 
 
